@@ -1,6 +1,7 @@
 package com.achour.springbootlibrary.config;
 
 import com.achour.springbootlibrary.entity.Book;
+import com.achour.springbootlibrary.entity.Review;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -17,7 +18,10 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE, HttpMethod.PATCH};
 
         config.exposeIdsFor(Book.class);
+        config.exposeIdsFor(Review.class);
+
         disableHttpMethods(Book.class, config, theUnsupportedActions);
+        disableHttpMethods(Review.class, config, theUnsupportedActions);
 
         // Confiure CORS mapping
         cors.addMapping(config.getBasePath() + "/**")
